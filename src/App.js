@@ -14,11 +14,11 @@ import Join from "./page/joinVideo/joinVideo"
 import Login from "./page/login/Login";
 import Meeting from "./page/meeting/meeting"
 function App() {
-  let [state,setState] = useState(false)
+  let [state,setState] = useState({})
   let history = useHistory()
   useEffect(()=>{
-    if(state==='create') history.push("/meeting")
-    if(state==='join' ) history.push("/join")
+    if(state.state==='create') history.push("/meeting")
+    if(state.state==='join' ) history.push("/join")
   },[state])
   return (
     <>
@@ -27,13 +27,13 @@ function App() {
       <Link to = "/meeting"></Link>
       <Switch>
       <Route  exact path = "/">
-        <Login handleClick={(e)=>{setState(e)}}></Login>
+        <Login handleClick={(e)=>{setState(e);}}></Login>
       </Route>
       <Router path="/join"> 
       <Join></Join>
       </Router>
       <Router path="/meeting">
-        <Meeting></Meeting>
+        <Meeting user={state.user}></Meeting>
       </Router>
       </Switch>
     </>

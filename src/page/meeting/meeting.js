@@ -1,35 +1,51 @@
 import React, { useState, useEffect } from "react";
 import AgoraRTC from "agora-rtc-sdk-ng";
+import {
+  RtcTokenBuilder,
+  RtmTokenBuilder,
+  RtcRole,
+  RtmRole,
+} from "agora-access-token";
 
 import styles from "./meeting.module.css";
-function Meeting() {
+function Meeting({ user }) {
   let [uid, setUid] = useState("");
+ 
+  const uuid = 2882341273;;
+  const role = RtcRole.PUBLISHER;
+
+  const expirationTimeInSeconds = 3600;
+
+  const currentTimestamp = Math.floor(Date.now() / 1000);
+
+  const privilegeExpiredTs = currentTimestamp + expirationTimeInSeconds;
+
+  const tokenA =   RtcTokenBuilder.buildTokenWithUid(user.appId, user.appCf, user.channel, uuid, role, privilegeExpiredTs);
+
   var rtc = {
-    // 用来放置本地客户端。
     client: null,
-    // 用来放置本地音视频频轨道对象。
     localAudioTrack: null,
     localVideoTrack: null,
   };
 
   var options = {
     // 替换成你自己项目的 App ID。
-    appId: "bf0c84d31dc14fdb91487bf09202eac2",
+    appId: user.appId,
     // 传入目标频道名。
-    channel: "demo_channel_name",
+    channel: user.channel,
     // 如果你的项目开启了 App 证书进行 Token 鉴权，这里填写生成的 Token 值。
-    token:
-      "006bf0c84d31dc14fdb91487bf09202eac2IADrhInGpAG/iTcpsiTkhtsbt88qrF0MVa3te7/2Q/36Ro4kO3kAAAAAEACMMKzfAd40YAEAAQD/3TRg",
+    token: tokenA,
   };
-
+  console.log(options.token);
   async function startBasicCall() {
     rtc.client = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
     const uid = await rtc.client.join(
       options.appId,
       options.channel,
       options.token,
-      null
+      uuid,
     );
+    console.log(uid);
     setUid(uid);
     rtc.client.on("user-published", async (user, mediaType) => {
       // 开始订阅远端用户。
@@ -83,36 +99,30 @@ function Meeting() {
     // 销毁本地音视频轨道。
     rtc.localAudioTrack.close();
     rtc.localVideoTrack.close();
-/*
+    
     // 遍历远端用户。
     rtc.client.remoteUsers.forEach((user) => {
       // 销毁动态创建的 DIV 节点。
       const playerContainer = document.getElementById(user.uid);
       playerContainer && playerContainer.remove();
     });
-*/
+
     // 离开频道。
     await rtc.client.leave();
   }
-  startBasicCall();
-
+  if (options.token) {
+    startBasicCall();
+  }
   useEffect(() => {
     if (uid) {
       console.log(uid);
     }
   }, [uid]);
+
   return (
     <div id="meet">
       <div>欢迎进入视频会议,加载缓慢稍等片刻</div>
-      <button
-      className={styles.btn}
-        onClick={(e) => {
-          leaveCall();
-        }}
-
-      >
-        退出会议
-      </button>
+    
     </div>
   );
 }
