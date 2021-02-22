@@ -11,16 +11,7 @@ import styles from "./meeting.module.css";
 function Meeting({ user }) {
   let [uid, setUid] = useState("");
  
-  const uuid = 2882341273;;
-  const role = RtcRole.PUBLISHER;
-
-  const expirationTimeInSeconds = 3600;
-
-  const currentTimestamp = Math.floor(Date.now() / 1000);
-
-  const privilegeExpiredTs = currentTimestamp + expirationTimeInSeconds;
-
-  const tokenA =   RtcTokenBuilder.buildTokenWithUid(user.appId, user.appCf, user.channel, uuid, role, privilegeExpiredTs);
+  
 
   var rtc = {
     client: null,
@@ -34,7 +25,7 @@ function Meeting({ user }) {
     // 传入目标频道名。
     channel: user.channel,
     // 如果你的项目开启了 App 证书进行 Token 鉴权，这里填写生成的 Token 值。
-    token: tokenA,
+    token: user.token,
   };
   console.log(options.token);
   async function startBasicCall() {
@@ -43,7 +34,7 @@ function Meeting({ user }) {
       options.appId,
       options.channel,
       options.token,
-      uuid,
+      null,
     );
     console.log(uid);
     setUid(uid);

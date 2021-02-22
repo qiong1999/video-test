@@ -33,6 +33,13 @@ function Login({ handleClick = () => {} }) {
             setUser({ ...user, channel: e.target.value });
           }}
         ></input>
+         <input
+          className={styles.inp}
+          placeholder="输入token"
+          onChange={(e) => {
+            setUser({ ...user, token: e.target.value });
+          }}
+        ></input>
         <button
           className={styles.create}
           onClick={() => {
