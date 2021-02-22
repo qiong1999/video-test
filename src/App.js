@@ -1,24 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import AgoraRTC from "agora-rtc-sdk-ng";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useHistory
+} from "react-router-dom";
 
+import "./App.css";
+
+import Join from "./page/joinVideo/joinVideo"
+import Login from "./page/login/Login";
+import Meeting from "./page/meeting/meeting"
 function App() {
+  let [state,setState] = useState(false)
+  let history = useHistory()
+  useEffect(()=>{
+    if(state==='create') history.push("/meeting")
+    if(state==='join' ) history.push("/join")
+  },[state])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Link to ="/"></Link>
+      <Link to="/join"></Link>
+      <Link to = "/meeting"></Link>
+      <Switch>
+      <Route  exact path = "/">
+        <Login handleClick={(e)=>{setState(e)}}></Login>
+      </Route>
+      <Router path="/join"> 
+      <Join></Join>
+      </Router>
+      <Router path="/meeting">
+        <Meeting></Meeting>
+      </Router>
+      </Switch>
+    </>
   );
 }
 
