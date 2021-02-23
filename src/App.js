@@ -30,7 +30,12 @@ function App() {
         <Login handleClick={(e)=>{setState(e);}}></Login>
       </Route>
       <Router path="/join"> 
-      <Join></Join>
+      <Join handleJoin={(e)=>{setState({
+        state:"create",
+        user:e
+      })
+      console.log(state,"state")
+      }}></Join>
       </Router>
       <Router path="/meeting">
         <Meeting user={state.user}></Meeting>

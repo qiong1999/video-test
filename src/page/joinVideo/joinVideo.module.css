@@ -55,12 +55,15 @@ button {
   border-radius: 5px;
 }
 .userName,
-.meeting {
+.meeting,
+.channel {
   color: rgb(84, 105, 226);
   font-size: 20px;
   margin-bottom: 10px;
+ 
 }
-.userName {
+.userName,
+.channel {
   margin-top: 20px;
 }
 .inp {
@@ -68,6 +71,7 @@ button {
   height: 30px;
   border: 2px solid rgb(84, 105, 226);
   border-radius: 5px;
+  padding-left:10px;
 }
 .join {
   margin-top: 20px;

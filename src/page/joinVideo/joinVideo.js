@@ -1,12 +1,12 @@
-import React,{useState,useEffect} from "react";
-
+import React, { useState, useEffect } from "react";
 
 import styles from "./joinVideo.module.css";
 
-function Join({handleLogin=()=>{}}) {
-  let [user,setUser] = useState({
-    userName:"",
-    meetingRoom:""
+function Join({ handleJoin = () => {} }) {
+  let [user, setUser] = useState({
+    appId: "",
+    appCf: "",
+    channel: "",
   });
   return (
     <div className={styles.container}>
@@ -16,21 +16,41 @@ function Join({handleLogin=()=>{}}) {
       </div>
       <div className={styles.bodyer}>
         <div className={styles.form}>
-          <div className={styles.meeting} >会议号:</div>
-          <input className={styles.inp}onChange={(e)=>{setUser({
-            ...user,
-            meetingRoom:e.target.value
-          })}}></input>
-          <div className = {styles.userName} >您的名称:</div>
-          <input className={styles.inp}onChange={(e)=>{setUser(
-            {
-              ...user,
-              userName:e.target.value
-            }
-          )}}></input>
-          <button className={styles.join} onClick={()=>{
-            handleLogin(user)
-          }}>加入会议</button>
+          <div className={styles.meeting}>appId:</div>
+          <input
+            className={styles.inp}
+            onChange={(e) => {
+              setUser({
+                ...user,
+                appId: e.target.value.trim(),
+              });
+            }}
+          ></input>
+          <div className={styles.userName}>app证书:</div>
+          <input
+            className={styles.inp}
+            onChange={(e) => {
+              setUser({
+                ...user,
+                appCf: e.target.value.trim(),
+              });
+            }}
+          ></input>
+          <div className={styles.channel}>频道名</div>
+          <input
+            className={styles.inp}
+            onChange={(e) => {
+              setUser({ ...user, channel: e.target.value.trim() });
+            }}
+          ></input>
+          <button
+            className={styles.join}
+            onClick={() => {
+              handleJoin(user);
+            }}
+          >
+            加入会议
+          </button>
         </div>
       </div>
     </div>
