@@ -33,18 +33,11 @@ function Login({ handleClick = () => {} }) {
             setUser({ ...user, channel: e.target.value });
           }}
         ></input>
-         <input
-          className={styles.inp}
-          placeholder="输入token"
-          onChange={(e) => {
-            setUser({ ...user, token: e.target.value });
-          }}
-        ></input>
+
         <button
           className={styles.create}
           onClick={() => {
-            handleClick({state:"create",user:user});
-           
+            handleClick({ state: "create", user: user });
           }}
         >
           创建会议
@@ -54,7 +47,7 @@ function Login({ handleClick = () => {} }) {
         <button
           className={styles.join}
           onClick={() => {
-            handleClick({state:"join"});
+            handleClick({ state: "join" });
           }}
         >
           加入会议
