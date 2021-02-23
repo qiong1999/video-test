@@ -16,21 +16,22 @@ function Login({ handleClick = () => {} }) {
           className={styles.inp}
           placeholder="输入App ID"
           onChange={(e) => {
-            setUser({ ...user, appId: e.target.value });
+            console.log("hi",e.target.value.trim())
+            setUser({ ...user, appId: e.target.value.trim() });
           }}
         ></input>
         <input
           className={styles.inp}
           placeholder="输入App 证书"
           onChange={(e) => {
-            setUser({ ...user, appCf: e.target.value });
+            setUser({ ...user, appCf: e.target.value.trim() });
           }}
         ></input>
         <input
           className={styles.inp}
           placeholder="输入频道名称"
           onChange={(e) => {
-            setUser({ ...user, channel: e.target.value });
+            setUser({ ...user, channel: e.target.value.trim() });
           }}
         ></input>
 

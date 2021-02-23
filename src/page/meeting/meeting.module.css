@@ -1,3 +1,8 @@
+.meet{
+    display:flex;
+    flex-wrap:wrap;
+}
+
 .btn{
     position:fixed;
     bottom:100px;
