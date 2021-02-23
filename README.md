@@ -14,7 +14,7 @@
 基本使用流程：
 
 #### 输入appID、app证书、频道名，创建会议
-![创建会议图](./image/creat.png)
+![创建会议图](./image/create.png)
 
 #### 加入视频会议
 ![加入会议图](./image/join.png)
