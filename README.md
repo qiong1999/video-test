@@ -1,7 +1,7 @@
 ## 视频会议小demo
 
 ***
-基本功能:
+#### 基本功能:
 
 (1)接入用户根据appID、app证书、频道名自动生成token
 
@@ -13,6 +13,10 @@
 
 基本使用流程：
 
-输入appID、app证书、频道名，创建会议
+#### 输入appID、app证书、频道名，创建会议
+![创建会议图](./image/creat.png)
 
-![创建会议图](https://github.com/qiong1999/video-test/public/test.png)
+#### 加入视频会议
+![加入会议图](./image/join.png)
+#### 视频会议
+![视频会议图](./image/test.png)
