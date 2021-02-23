@@ -15,4 +15,4 @@
 
 输入appID、app证书、频道名，创建会议
 
-![创建会议图]('http://https://github.com/qiong1999/video-test/public/test.png')
+![创建会议图]('https://github.com/qiong1999/video-test/public/test.png')
